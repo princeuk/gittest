@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-India Test
-=======
-Test1 Branch
->>>>>>> test1
+Master Branch
