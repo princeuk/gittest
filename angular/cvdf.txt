@@ -1,3 +1,51 @@
-test1 Branch1
+    $(document).ready(function (e) {
+    $("#frmClientAddLogo").on('submit',(function(e) {
+        e.preventDefault();
+        var fData = new FormData(this);
+        console.log(fData);
 
-bb
+        $.ajax({
+            url: "http://localhost/crm/public/clients/groups/add",
+            type: "POST",
+            data:  fData,
+            contentType: false,
+            cache: false,
+            processData:false,
+            success: function(data)
+            {
+                
+             $('.popupSection').removeClass('openPop');   
+             $(".logo_pic").html(data);
+             //console.log(data);
+            },
+            error: function() 
+            {
+            }           
+       });
+    }));
+});
+
+
+
+
+public function clientsGroupAddPost(Request $request){
+
+        //echo "<pre>";
+       // print_r($_FILES);print_r($_REQUEST);die;
+
+
+        if($request->logo){
+
+            //$logoName = 'client_'.time().'.'.$request->logo->getClientOriginalExtension();
+            $logoName = 'client'.'.'.$request->logo->getClientOriginalExtension();
+            $request->logo->move(public_path('imgs/account'), $logoName);
+            return "<img src='http://localhost/crm/public/imgs/account/".$logoName."'>";;
+           
+        }
+
+        }
+
+
+<input type="submit" name="submit" value="submit" style="position: relative;z-index: 999;background: #0f94cd none repeat scroll 0 0;border: 0 none;padding: 0;border-radius: 50px;color: #fff;display: block;font-size: 12px;height: 34px;line-height: 32px;margin: 20px auto 0;text-align: center;transition: all 0.5s ease 0s;width: 135px;">
+
+
